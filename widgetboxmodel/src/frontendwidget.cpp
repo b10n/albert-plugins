@@ -554,6 +554,26 @@ bool WidgetBoxModel::FrontendWidget::eventFilter(QObject *, QEvent *event) {
             setShowActions(true);
             return true;
 
+        case Qt::Key_K:{
+            if ( keyEvent->modifiers() == Qt::ControlModifier ) {
+                QModelIndex next = d->actionsListModel_->index(std::max(d->ui.actionList->currentIndex().row() - 1, 0),
+                                                                        0, d->ui.actionList->rootIndex());
+                d->ui.actionList->setCurrentIndex(next);
+                return true;
+            }
+            return false;
+        }
+
+        case Qt::Key_J:{
+            if ( keyEvent->modifiers() == Qt::ControlModifier ) {
+                QModelIndex prev = d->actionsListModel_->index(std::min(d->ui.actionList->currentIndex().row() + 1,
+                                                                        d->actionsListModel_->rowCount() - 1), 0, d->ui.actionList->rootIndex());
+                d->ui.actionList->setCurrentIndex(prev);
+                return true;
+            }
+            return false;
+        }
+
         case Qt::Key_Up:{
             // Move up in the history
             if ( !d->ui.resultsList->currentIndex().isValid() // Empty list
