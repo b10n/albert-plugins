@@ -550,7 +550,7 @@ bool WidgetBoxModel::FrontendWidget::eventFilter(QObject *, QEvent *event) {
             }
             return true;
 
-        case Qt::Key_Alt:
+        case Qt::Key_Control:
             setShowActions(true);
             return true;
 
@@ -583,7 +583,7 @@ bool WidgetBoxModel::FrontendWidget::eventFilter(QObject *, QEvent *event) {
     if ( event->type() == QEvent::KeyRelease ) {
         QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
         switch (keyEvent->key()) {
-        case Qt::Key_Alt:
+        case Qt::Key_Control:
             setShowActions(false);
             return true;
         }
